@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsh Yadav - Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4895ef;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e9ecef;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+
+        .dark-mode {
+            --primary-color: #4cc9f0;
+            --secondary-color: #4361ee;
+            --accent-color: #3a0ca3;
+            --text-color: #f8f9fa;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --border-color: #333;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 600px;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            animation: profileFadeIn 1s ease-out;
+        }
+
+        @keyframes profileFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-text {
+            text-align: left;
+        }
+
+        .profile-text h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .profile-text h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            animation: slideInRight 0.8s ease-out 0.2s both;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            animation: slideInRight 0.8s ease-out 0.4s both;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .contact-info a:hover {
+            transform: translateY(-3px);
+        }
+
+        .download-btn {
+            background-color: white;
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 1.5rem;
+            display: inline-block;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: bounceIn 1s ease-out 0.6s both;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        nav {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px var(--shadow-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            transition: transform 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            padding-top: 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        .summary-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 800px;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 10px var(--shadow-color);
+            flex: 1 1 300px;
+            max-width: 400px;
+            transition: transform 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Special styling for the last two categories */
+        .skill-category:nth-last-child(-n+2) {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .skill-category h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 1.5px;
+        }
+
+        .skill-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-icon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .skill-icon-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .experience-roadmap {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .experience-roadmap::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 120px;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        .roadmap-card {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .roadmap-card::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            left: 112px;
+            top: 10px;
+            border: 4px solid var(--bg-color);
+            z-index: 1;
+        }
+
+        .roadmap-date {
+            width: 100px;
+            text-align: right;
+            padding-right: 30px;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            padding-top: 10px;
+        }
+
+        .roadmap-content {
+            flex: 1;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-left: 40px;
+            box-shadow: 0 4px 10px var(--shadow-color);
+            transition: transform 0.3s;
+        }
+
+        .roadmap-content:hover {
+            transform: translateY(-5px);
+        }
+
+        .roadmap-header {
+            margin-bottom: 1rem;
+        }
+
+        .roadmap-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.3rem;
+        }
+
+        .roadmap-company {
+            font-size: 1rem;
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+        }
+
+        .roadmap-location {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .dark-mode .roadmap-location {
+            color: #aaa;
+        }
+
+        .roadmap-description ul {
+            list-style-type: none;
+        }
+
+        .roadmap-description li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .roadmap-description li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px var(--shadow-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 550px;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px var(--shadow-color);
+        }
+
+        .project-img {
+    height: 200px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.project-card:hover .project-img img {
+    transform: scale(1.05);
+}
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .project-techs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-description {
+            position: relative;
+            max-height: 200px;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-description::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(to top, var(--card-bg), transparent);
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover .project-description {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .project-card:hover .project-description::after {
+            opacity: 0;
+        }
+
+        .project-link {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white !important;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-align: center;
+            margin-top: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            align-self: center;
+        }
+
+        .project-link:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .education-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 10px var(--shadow-color);
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .degree {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .institution {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-period,
+        .edu-location {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .dark-mode .edu-period,
+        .dark-mode .edu-location {
+            color: #aaa;
+        }
+
+        footer {
+            background-color: var(--card-bg);
+            padding: 3rem 0;
+            text-align: center;
+            box-shadow: 0 -2px 10px var(--shadow-color);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            background-color: var(--primary-color);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            background-color: var(--secondary-color);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .dark-mode .copyright {
+            color: #aaa;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 99;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            background-color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                height: 85vh;
+            }
+
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+
+            .profile-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .profile-text h2 {
+                font-size: 1.5rem;
+            }
+
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-text {
+                text-align: center;
+            }
+
+            .contact-info {
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--card-bg);
+                padding: 1rem;
+                box-shadow: 0 5px 10px var(--shadow-color);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .roadmap-card {
+                flex-direction: column;
+            }
+
+            .roadmap-card::before {
+                left: 12px;
+            }
+
+            .roadmap-date {
+                width: 100%;
+                text-align: left;
+                padding-left: 50px;
+                padding-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .roadmap-content {
+                margin-left: 0;
+            }
+        }
+
+        #summary {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        #summary p {
+            margin: 1.5rem auto;
+            line-height: 1.8;
+        }
+
+        /* Scrollbar styling */
+        .project-description::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .project-description::-webkit-scrollbar-track {
+            background: var(--card-bg);
+        }
+
+        .project-description::-webkit-scrollbar-thumb {
+            background-color: var(--primary-color);
+            border-radius: 6px;
+        }
+
+        .project-description::-webkit-scrollbar-thumb:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .project-card::after {
+            content: 'Hover for more';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            opacity: 0.7;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover::after {
+            opacity: 0;
+        }
+
+        /* Zoom animation for project cards */
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .project-card.animated {
+            animation: zoomIn 0.6s ease forwards;
+        }
+
+        /* Stagger the animations */
+        .project-card:nth-child(1).animated {
+            animation-delay: 0.1s;
+        }
+
+        .project-card:nth-child(2).animated {
+            animation-delay: 0.3s;
+        }
+
+        .project-card:nth-child(3).animated {
+            animation-delay: 0.5s;
+        }
+
+        .project-card.animated:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 20px var(--shadow-color);
+        }
+
+        /* Add this to your CSS section */
+        .project-description ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-description li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .project-description li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Make sure bullets are visible in dark mode */
+        .dark-mode .project-description li::before {
+            color: var(--primary-color);
+        }
+
+        /* Add these styles for skill icon animations */
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) translateY(20px);
+            }
+            70% {
+                transform: scale(1.1) translateY(-5px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .skill-icon-container {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+
+        .skill-icon-container.animate-skill {
+            animation: popIn 0.6s forwards;
+        }
+
+        /* Add staggered delays for each skill category */
+        .skill-category:nth-child(1) .skill-icon-container.animate-skill {
+            animation-delay: calc(var(--i, 0) * 0.1s + 0.1s);
+        }
+
+        .skill-category:nth-child(2) .skill-icon-container.animate-skill {
+            animation-delay: calc(var(--i, 0) * 0.1s + 0.3s);
+        }
+
+        .skill-category:nth-child(3) .skill-icon-container.animate-skill {
+            animation-delay: calc(var(--i, 0) * 0.1s + 0.5s);
+        }
+
+        .skill-category:nth-child(4) .skill-icon-container.animate-skill {
+            animation-delay: calc(var(--i, 0) * 0.1s + 0.7s);
+        }
+
+        .skill-category:nth-child(5) .skill-icon-container.animate-skill {
+            animation-delay: calc(var(--i, 0) * 0.1s + 0.9s);
+        }
+
+        /* Add a pulse effect to skill categories */
+        @keyframes pulseBorder {
+            0% {
+                box-shadow: 0 4px 10px var(--shadow-color);
+            }
+            50% {
+                box-shadow: 0 4px 20px var(--primary-color);
+            }
+            100% {
+                box-shadow: 0 4px 10px var(--shadow-color);
+            }
+        }
+
+        .skill-category {
+            animation: pulseBorder 3s infinite;
+            animation-play-state: paused;
+        }
+
+        .skill-category:nth-child(1) { animation-delay: 0s; }
+        .skill-category:nth-child(2) { animation-delay: 0.5s; }
+        .skill-category:nth-child(3) { animation-delay: 1s; }
+        .skill-category:nth-child(4) { animation-delay: 1.5s; }
+        .skill-category:nth-child(5) { animation-delay: 2s; }
+
+        #skills.visible .skill-category {
+            animation-play-state: running;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">HY.</div>
+            <div class="nav-links">
+                <a href="#summary">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#education">Education</a>
+            </div>
+            <button class="theme-toggle" id="theme-toggle">
+                <i class="fas fa-sun"></i>
+            </button>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <header>
+        <div class="particles" id="particles-js"></div>
+        <div class="header-content">
+            <div class="profile-container">
+                <img src="./assets/hdp.jpeg" alt="Harsh Yadav" class="profile-img">
+                <div class="profile-text">
+                    <h1>Harsh Yadav</h1>
+                    <h2>Full Stack Developer</h2>
+                    <div class="contact-info">
+                        <a href="tel:+916291600398"><i class="fas fa-phone"></i> +916291600398</a>
+                        <a href="mailto:yadavharsh85849@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+                        <a href="https://www.linkedin.com/in/harsh-yadav-168953237/"><i class="fab fa-linkedin"></i>
+                            LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <a href="./assets/harshyadavresume2025.pdf" class="download-btn" id="download-resume"
+                download="harsh-yadav.pdf">
+                <i class="fas fa-download"></i> Download Resume
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section id="summary">
+            <h2 class="section-title">About Me</h2>
+            <div class="summary-content">
+                <p>Experienced full-stack developer proficient in both front-end and back-end development, skilled in
+                    collaborating with cross-functional teams across diverse time zones. My expertise includes
+                    JavaScript, HTML, CSS, React, Node.js, Python, Django, RESTful APIs, SQL, MongoDB, Agile
+                    methodology, Scrum, Git, and CI/CD pipelines.</p>
+                <p>I'm passionate about building scalable, efficient applications that solve real-world problems. With
+                    experience in microservices architecture, serverless computing, and cloud deployment, I deliver
+                    high-performance solutions that drive business growth.</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-icons">
+                        <div class="skill-icon-container">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                                alt="JavaScript" class="skill-icon">
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-icon-container">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                                alt="TypeScript" class="skill-icon">
+                            <span>TypeScript</span>
+                        </div>
+                        <div class="skill-icon-container">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                                alt="Python" class="skill-icon">
+                            <span>Python</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Frontend Frameworks</h3>
+                    <div class="skill-icons">
+                        <div class="skill-icon-container">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                                alt="React.js" class="skill-icon">
+                            <span>React.js</span>
+                        </div>
+                        <div class="skill-icon-container">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+                                alt="Next.js" class="skill-icon">
+                            <span>Next.js</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend Frameworks</h3>
+                    <div class="skill-icons">
+                        <div class="skill-icon-container">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                                alt="Node.js" class="skill-icon">
+                            <span>Node.js</span>
+                        </div>
+                        <div class="skill-icon-container">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
+                                alt="Express.js" class="skill-icon">
+                            <span>Express.js</span>
+                        </div>
+                        <div class="skill-icon-container">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
+                                alt="Django" class="skill-icon">
+                            <span>Django</span>
+                        </div>
+                        <div class="skill-icon-container">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
+                                alt="FastAPI" class="skill-icon">
+                            <span>FastAPI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>DevOps and Cloud</h3>
+                    <div class="skill-icons">
+                        <div class="skill-icon-container">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                                alt="Docker" class="skill-icon">
+                            <span>Docker</span>
+                        </div>
+                        <div class="skill-icon-container">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" 
+                                 alt="AWS" class="skill-icon">
+                            <span>AWS</span>
+                        </div>
+                        <div class="skill-icon-container">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg"
+                                alt="CI/CD" class="skill-icon">
+                            <span>CI/CD Pipelines</span>
+                        </div>
+                        <div class="skill-icon-container">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg"
+                                alt="Nginx" class="skill-icon">
+                            <span>Nginx</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Databases</h3>
+                    <div class="skill-icons">
+                        <div class="skill-icon-container">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                                alt="MySQL" class="skill-icon">
+                            <span>MySQL</span>
+                        </div>
+                        <div class="skill-icon-container">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                                alt="MongoDB" class="skill-icon">
+                            <span>MongoDB</span>
+                        </div>
+                        <div class="skill-icon-container">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                                alt="PostgreSQL" class="skill-icon">
+                            <span>PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-roadmap">
+                <div class="roadmap-card">
+                    <div class="roadmap-date">Jun '24 — Present</div>
+                    <div class="roadmap-content">
+                        <div class="roadmap-header">
+                            <h3 class="roadmap-title">Software Developer</h3>
+                            <div class="roadmap-company">TexAu</div>
+                            <div class="roadmap-location">United Arab Emirates (Remote)</div>
+                        </div>
+                        <div class="roadmap-description">
+                            <ul>
+                                <li>Implemented microservices-based solution using Node.js and TypeScript, significantly
+                                    enhancing system flexibility and performance</li>
+                                <li>Utilized AWS Lambda for serverless computing, optimizing resource utilization and
+                                    reducing infrastructure costs</li>
+                                <li>Integrated Zapier to create seamless workflow automations, enabling efficient data
+                                    synchronization across multiple sales and marketing tools</li>
+                                <li>Successfully deployed specialized automation services using Docker and Amazon ECS,
+                                    ensuring consistent and reliable application deployment</li>
+                                <li>Designed and implemented automation strategies that increased lead conversion rates
+                                    and reduced manual data processing time</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-card">
+                    <div class="roadmap-date">Jan '24 — Jun '24</div>
+                    <div class="roadmap-content">
+                        <div class="roadmap-header">
+                            <h3 class="roadmap-title">AWS Developer (Contract)</h3>
+                            <div class="roadmap-company">Sonnul</div>
+                            <div class="roadmap-location">Sacramento, California, United States (Remote)</div>
+                        </div>
+                        <div class="roadmap-description">
+                            <ul>
+                                <li>Integrated Sanity.io with Gatsby and React, building and optimizing Sanity schemas
+                                    to enhance content management and dynamic content rendering</li>
+                                <li>Utilized Sanity GraphQL APIs to create flexible and efficient content delivery
+                                    mechanisms</li>
+                                <li>Leveraged AWS S3 for efficient storage and management of application assets,
+                                    ensuring high availability and durability of project resources</li>
+                                <li>Developed reusable and modular DynamoDB classes for complex filter expressions,
+                                    significantly streamlining database query and data manipulation processes</li>
+                                <li>Developed modular, TypeScript-based backend services that improved code
+                                    maintainability and reduced potential runtime errors</li>
+                                <li>Successfully integrated AWS Cognito for secure user authentication, dramatically
+                                    enhancing application security and user management capabilities</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-card">
+                    <div class="roadmap-date">Oct '22 — Oct '23</div>
+                    <div class="roadmap-content">
+                        <div class="roadmap-header">
+                            <h3 class="roadmap-title">Software Engineer</h3>
+                            <div class="roadmap-company">Stride Ahead</div>
+                            <div class="roadmap-location">Delhi, India (Remote)</div>
+                        </div>
+                        <div class="roadmap-description">
+                            <ul>
+                                <li>Effectively led the migration of monolithic backend applications to FastAPI and
+                                    Node.js microservices, driving the adoption of contemporary technologies for
+                                    enhanced performance and scalability</li>
+                                <li>Implemented CI/CD pipelines with AWS services (S3, Amplify, CodeDeploy, Route53,
+                                    ACM, CloudFront) for streamlined development and reliable automated deployments</li>
+                                <li>Proficiently managed databases, optimizing data models by transitioning from
+                                    Object-Relational Mapping (ORM) tools to raw queries. This focus on performance
+                                    tuning led to faster response times across various services</li>
+                                <li>Delivered swift resolutions to client issues, showcasing adept problem-solving
+                                    abilities. This proactive approach not only
+                                    enhances customer satisfaction but also safeguards the company from potential losses
+                                    by maintaining a positive customer
+                                    experience.
+                                </li>
+                                <li>Effectively resolved bugs across frontend and backend systems, resulting in
+                                    significant enhancements to web
+                                    functionality. Timely bug resolution contributes to an improved user experience and
+                                    ensures platform stability.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-card">
+                    <div class="roadmap-date">Aug '23 — Sep '23</div>
+                    <div class="roadmap-content">
+                        <div class="roadmap-header">
+                            <h3 class="roadmap-title">Web Developer Intern</h3>
+                            <div class="roadmap-company">Algozenith</div>
+                            <div class="roadmap-location">Delhi, India</div>
+                        </div>
+                        <div class="roadmap-description">
+                            <ul>
+                                <li>Integrated the user interface (UI) with backend compilers for multiple programming
+                                    languages including C, C++, and Go. This seamless integration empowers users to
+                                    write, compile, and run code directly within the platform</li>
+                                <li>Led the migration of UI from React to Next.js 13 for server-side rendering,
+                                    enhancing performance and enabling SEO optimization</li>
+                                <li>Facilitated the transition to continuous deployment on AWS Amplify for streamlined
+                                    development and deployment workflows</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Node.js Project</h3>
+                        <div class="project-techs">
+                            <span class="project-tech">TypeScript</span>
+                            <span class="project-tech">Node.js</span>
+                            <span class="project-tech">Express.js</span>
+                            <span class="project-tech">AWS</span>
+                            <span class="project-tech">PostgreSQL</span>
+                        </div>
+                        <div class="project-description">
+                            <ul>
+                                <li>Used TypeScript as it enhances code quality and developer experience</li>
+                                <li>CI/CD bitbucket pipeline with AWS Service CodeDeploy, S3 and Nginx for
+                                    port-forwarding</li>
+                                <li>Backend Built using Node.js, Express.js to handle API integration. PG Library to
+                                    handle PostgreSQL database connections</li>
+                                <li>Modularized Project Structure which promotes code maintainability, reusability, and
+                                    scalability</li>
+                            </ul>
+                        </div>
+                        <a href="https://bitbucket.org/pen-stack/node_rest/src/main/" class="project-link">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="./assets/pp.png" alt="Digital Marketing Website">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Digital Marketing Website</h3>
+                        <div class="project-techs">
+                            <span class="project-tech">Next.js</span>
+                            <span class="project-tech">TypeScript</span>
+                            <span class="project-tech">Tailwind CSS</span>
+                            <span class="project-tech">AWS</span>
+                            <span class="project-tech">Serverless</span>
+                        </div>
+                        <div class="project-description">
+                            <ul>
+                                <li>Used Next.js with TypeScript and Tailwind CSS to build reusable UI components for
+                                    better SEO and overall performance</li>
+                                <li>Deployment is handled by AWS services with builds uploaded on S3 bucket, with
+                                    CloudFront as CDN, while Route 53 is used to handle all DNS</li>
+                                <li>Built and Deployed a Serverless Backend using Node.js, Express.js and AWS Lambda to
+                                    store user enquiry data on DB and a webhook is called to send data to Google Sheets
+                                    of the client</li>
+                                <li>Created a Docker Image for deployment on EC2 instance. Nginx is configured for
+                                    port-forwarding</li>
+                            </ul>
+                        </div>
+                        <a href="https://scribblesphere.in/" class="project-link">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Flask Note</h3>
+                        <div class="project-techs">
+                            <span class="project-tech">Python</span>
+                            <span class="project-tech">Flask</span>
+                            <span class="project-tech">MongoDB</span>
+                            <span class="project-tech">JWT</span>
+                            <span class="project-tech">Docker</span>
+                        </div>
+                        <div class="project-description">
+                            <ul>
+                                <li>Backend Built using Flask, Python which a Modularized Project Structure for better
+                                    code maintainability, reusability, and scalability</li>
+                                <li>MongoAtlas is used as Database and MongoEngine for handling database connections
+                                    while JWT is used for user authentication</li>
+                                <li>Created a Docker Image for deployment on EC2 instance and configured Nginx for
+                                    port-forwarding</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/Harsh-2503/flask_api" class="project-link">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2 class="section-title">Education</h2>
+            <div class="education-card">
+                <div class="degree">Bachelor's Degree in Computer Applications</div>
+                <div class="institution">Calcutta Anglo Gujarati College</div>
+                <div class="edu-period">Jan '21 — Jan '24</div>
+                <div class="edu-location">Kolkata, India</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://github.com/Harsh-2503" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/harsh-yadav-168953237/" class="social-link"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Harsh Yadav. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        const body = document.body;
+
+        // Check for saved theme preference or set dark theme as default
+        if (localStorage.getItem('theme') === 'light') {
+            body.classList.remove('dark-mode');
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+        } else {
+            body.classList.add('dark-mode');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+            localStorage.setItem('theme', 'dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+
+            if (navLinks.classList.contains('active')) {
+                icon.classList.replace('fa-bars', 'fa-times');
+            } else {
+                icon.classList.replace('fa-times', 'fa-bars');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                if (this.getAttribute('href') !== '#') {
+                    const target = document.querySelector(this.getAttribute('href'));
+
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+
+                        // Close mobile menu if open
+                        if (navLinks.classList.contains('active')) {
+                            navLinks.classList.remove('active');
+                            mobileMenuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                        }
+                    }
+                }
+            });
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const sections = document.querySelectorAll('section');
+
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (sectionTop < windowHeight - 100) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        // Initialize sections visibility
+        window.addEventListener('DOMContentLoaded', () => {
+            revealOnScroll();
+        });
+
+        // Check visibility on scroll
+        window.addEventListener('scroll', () => {
+            revealOnScroll();
+        });
+
+        // Particles.js for header background
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#ffffff'
+                },
+                shape: {
+                    type: 'circle',
+                    stroke: {
+                        width: 0,
+                        color: '#000000'
+                    },
+                    polygon: {
+                        nb_sides: 5
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: false,
+                    anim: {
+                        enable: false,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: false,
+                        speed: 40,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#ffffff',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 3,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'grab'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    bubble: {
+                        distance: 400,
+                        size: 40,
+                        duration: 2,
+                        opacity: 8,
+                        speed: 3
+                    },
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    },
+                    remove: {
+                        particles_nb: 2
+                    }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Download resume functionality
+        document.getElementById('download-resume').addEventListener('click', function (e) {
+            // Let the default link behavior handle the download
+            // No need to prevent default or show alert
+        });
+
+        // Add fade-in animation to skill tags
+        const skillTags = document.querySelectorAll('.skill-tag');
+        skillTags.forEach((tag, index) => {
+            tag.style.animation = `fadeIn 0.3s ease forwards ${index * 0.1}s`;
+            tag.style.opacity = '0';
+        });
+
+        // Add animation for timeline items
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach((item, index) => {
+            item.style.animation = `slideInRight 0.5s ease forwards ${index * 0.2}s`;
+            item.style.opacity = '0';
+        });
+
+        // Add animation for project cards
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach((card) => {
+            card.style.opacity = '1'; // Force opacity to 1
+            card.style.animation = 'none'; // Remove animation that might be hiding it
+        });
+
+        // Custom cursor effect (optional)
+        const cursorDot = document.createElement('div');
+        cursorDot.className = 'cursor-dot';
+        document.body.appendChild(cursorDot);
+
+        const cursorOutline = document.createElement('div');
+        cursorOutline.className = 'cursor-outline';
+        document.body.appendChild(cursorOutline);
+
+        document.addEventListener('mousemove', (e) => {
+            cursorDot.style.cssText = `
+                left: ${e.clientX}px;
+                top: ${e.clientY}px;
+            `;
+
+            cursorOutline.style.cssText = `
+                left: ${e.clientX}px;
+                top: ${e.clientY}px;
+            `;
+        });
+
+        // Project cards animation on scroll
+        function animateProjectCards() {
+            const projectSection = document.getElementById('projects');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            if (!projectSection) return;
+            
+            const sectionTop = projectSection.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            // If projects section is in view
+            if (sectionTop < windowHeight - 150) {
+                projectCards.forEach(card => {
+                    card.classList.add('animated');
+                });
+            }
+        }
+
+        // Add this function to your JavaScript
+        function animateSkillIcons() {
+            const skillsSection = document.getElementById('skills');
+            const skillIcons = document.querySelectorAll('.skill-icon-container');
+            
+            if (!skillsSection) return;
+            
+            const sectionTop = skillsSection.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (sectionTop < windowHeight - 100) {
+                skillIcons.forEach((icon, index) => {
+                    setTimeout(() => {
+                        icon.classList.add('animate-skill');
+                    }, index * 50);
+                });
+            }
+        }
+
+        // Add this to your scroll event listener
+        window.addEventListener('scroll', () => {
+            revealOnScroll();
+            animateProjectCards();
+            animateSkillIcons();
+            
+            // Back to top button visibility
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Also check on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            revealOnScroll();
+            animateProjectCards();
+            animateSkillIcons();
+        });
+    </script>
+</body>
+
+</html>
